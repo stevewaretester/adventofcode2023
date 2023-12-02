@@ -32,7 +32,7 @@ for line in lines:
     #remove the letters
     numbers = ''.join(filter(str.isdigit, line))
     numbersLength = (len(numbers))
-    #(provided there actually was a number)
+    #(provided there actually was a number, i.e a length of more than 0)
     if numbersLength>0:
         #take the first and last number
         smush = numbers[0]+numbers[numbersLength-1]

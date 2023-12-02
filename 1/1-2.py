@@ -10,7 +10,19 @@ def txtToLineArray(txt):
     file.close()
     return lines
 
+class numAndPos:
+  def __init__(num, pos):
+    self.name = num
+    self.age = pos
+
+
 def numberwang(instr):
+#get the starting character position of each word
+
+#for
+
+#get the position of each number
+#smush together into a new string
 
     return 0
     
@@ -28,10 +40,10 @@ thisDict = {
 
 input = os.path.join(sys.path[0],"input.txt")
 
-print()
-lines = txtToLineArray(input)
-#lines = ["noNumbers","one1Number","mo2retha3ntwo4Numbers","only5two6Numbers"] #11+24+56 = 18
-#print(lines)
+#lines = txtToLineArray(input)
+
+lines = ["two1nine","eightwothree","abcone2threexyz","xtwone3four","4nineeightseven2","zoneight234","7pqrstsixteen","five1oneightg"] #values are 29, 83, 13, 24, 42, 14, and 76 and 58 = 281+58=339
+print(lines)
 
 
 total = 0
@@ -39,8 +51,7 @@ for line in lines:
     #Convert all the strings into numbers
     
     
-    #remove the letters
-    
+    #remove any remaining letters
     
     numbers = ''.join(filter(str.isdigit, line))
 
