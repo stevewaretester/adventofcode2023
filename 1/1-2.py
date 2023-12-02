@@ -16,9 +16,8 @@ class numAndPos:
     self.pos = pos
 
     
-textNums = ["one","two","three","four","five","six","seven","eight","nine"]
 
-
+#Reading in the file and parsing it to lines
 input = os.path.join(sys.path[0],"input.txt")
 
 lines = txtToLineArray(input)
@@ -31,7 +30,7 @@ lines = txtToLineArray(input)
 #print(lines)
 
 
-
+#function for finding a string within a string and returning its numerical translation and position
 def findAllInstances(searchin, searchfor, actualInt):
     outputList = []
     lastpos = 0
@@ -47,12 +46,18 @@ def findAllInstances(searchin, searchfor, actualInt):
             moreToFind = False
     return outputList
 
+
+#just an array of text numbers in order so I can do say actualnumber=1 textNums[actualnumber-1], so I know one is 1
+textNums = ["one","two","three","four","five","six","seven","eight","nine"]
+
+
 total = 0 #this is the actual value we need to return.
+
 for line in lines:
     print(line)
-    count = 0 #cheap way of doing the actual "number" for the textnums
+    count = 0 #cheap way of doing the actual "number" for the textnums, because I'll increment before doing anything.
     
-    bigArray = []
+    bigArray = []#this is an aggregate array across both textnums and numerals to capture
     for textnum in textNums:#compare against the word-numbers
         count+=1
         if not(textnum in line):#early exit can skip if it's not in.
@@ -62,8 +67,8 @@ for line in lines:
         for thing in output1:
             bigArray.append(thing)
        
-
-    for i in range(1,10):
+#adspace here.
+    for i in range(1,10):#1-9 (inclusive) baby
         if not(str(i) in line):#early exit can skip if it's not in.
             #print("no "+str(i)+"'s")
             continue
@@ -73,7 +78,7 @@ for line in lines:
     
     bigArray.sort(key=lambda x: x.pos)#sorts each bigArray from lowest to highest.
     
-    smush = str(bigArray[0].num)+str(bigArray[len(bigArray)-1].num)
+    smush = str(bigArray[0].num)+str(bigArray[len(bigArray)-1].num)#same as 1-1: takes the lowest and highest numbers as strings, concats them (so 1,2 = 12)
     print(smush)
     total+=int(smush)
 
@@ -81,3 +86,4 @@ for line in lines:
         print("num:"+str(thing.num)+", pos:"+str(thing.pos))
 
 print("TOTAL = "+str(total))
+#52834
