@@ -1,19 +1,25 @@
+#https://adventofcode.com/2023/day/1#part2
+
+import os
+import sys
 
 
-inputList = ["1twoneighthree3nine4fiveightwosevenine5","two1nine","eightwothree","abcone2threexyz","xtwone3four","4nineeightseven2","zoneight234","7pqrstsixteen","five1oneightg"]
-textNums = ["one","two","three","four","five","six","seven","eight","nine"]
+input = os.path.join(sys.path[0],"input.txt")
 
-#print(input)
-#for lines in list
+lines = ["1twoneighthree3nine4fiveightwosevenine5","two1nine","eightwothree","abcone2threexyz","xtwone3four","4nineeightseven2","zoneight234","7pqrstsixteen","five1oneightg"]
 
+#lines = txtToLineArray(input)
 
+#Object for holding number and position
 class numAndPos:
   def __init__(self, num, pos):
     self.num = num
     self.pos = pos
 
+
+#function for finding a string within a string and returning its numerical translation and position
 def findAllInstances(searchin, searchfor, actualInt):
-    outputList = []
+    outputList = []#list we'll add objects to
     lastpos = 0
     moreToFind = True
     while moreToFind:
@@ -28,7 +34,11 @@ def findAllInstances(searchin, searchfor, actualInt):
     return outputList
 
 
-for line in inputList:
+textNums = ["one","two","three","four","five","six","seven","eight","nine"]
+
+#Actual logic here
+total = 0
+for line in lines:
     print(line)
     count=0
     total = 0
@@ -43,18 +53,7 @@ for line in inputList:
             bigArray.append(thing)
 
 
-       
-
-
-
-        #for thing in bigArray:
-        #    for subthing in thing:
-        #        print("num:"+str(subthing.num)+", pos:"+str(subthing.pos))
-        #print(output)
-        
-        
-
-    for i in range(1,10):
+    for i in range(1,10):#compare against numerical-numbers
         if not(str(i) in line):#early exit can skip if it's not in.
             #print("no "+str(i)+"'s")
             continue
@@ -62,19 +61,10 @@ for line in inputList:
         for thing in output2:
             bigArray.append(thing)
     
-    bigArray.sort(key=lambda x: x.pos)
+    bigArray.sort(key=lambda x: x.pos)#sort it so we have a top and a bottom across all values
     
     for thing in bigArray:
         print("num:"+str(thing.num)+", pos:"+str(thing.pos))
     
     
-    #for thing in bigArray:
-        #print(thing.num)
-    #    print("num:"+str(thing.num)+", pos:"+str(thing.pos))
-
-    ### Do the same for Numerals
-    #for i in range(1,10):
-#    if not(str(i) in input):#early exit can skip if it's not in.
-#        continue
-#    findAllInstances(input,str(i),i)    
-
+    
