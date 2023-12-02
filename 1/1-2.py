@@ -55,11 +55,11 @@ total = 0 #this is the actual value we need to return.
 
 for line in lines:
     print(line)
-    count = 0 #cheap way of doing the actual "number" for the textnums, because I'll increment before doing anything.
+    count = 0 #cheap way of doing the actual "number" for the textnums, because I'll increment before doing anything, and one=1, two=1 etc.
     
     bigArray = []#this is an aggregate array across both textnums and numerals to capture
     for textnum in textNums:#compare against the word-numbers
-        count+=1
+        count+=1#told ya it'd increment.
         if not(textnum in line):#early exit can skip if it's not in.
             #print("no "+textnum+"'s")
             continue#skipthisnumber
