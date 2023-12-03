@@ -5,6 +5,7 @@ array = []
 array = [["1","2","3"],["4","5","6"]] #Easy Example array
 
 print("LENGTH "+str(len(array)))
+print("LENGTH "+str(len(array[0])))
 
 array = [[]] #mostly blank example array
 
