@@ -62,21 +62,23 @@ Two mechanisms to use here.
 '''
 Total = 0#what we'll be printing at the end.
 rowCount = 0 #we'll likely need this at some point.
-
-rowLoop = True#keep looping ROWS while this is true
 #while rowLoop:
 for row in grid:
-    #print(row)
-    colMax = len(grid)
-    rowMax = len(grid[0])
+    print(row)
+    rowMax = len(grid)
+    print("rowMax: "+str(rowMax))
+
 
 
     symbolFound = False #can use this to early-exit searching for symbols.
     skipBy = 0#we can use this to skip the next few columns - eg if we've found a number string
     colCount = 0
-    colLoop = True#keep looping ROWS while this is true
     
     for col in row:
+        colMax = len(row[rowCount+1])
+        print(rowCount)
+        print("colMax: "+str(colMax))
+
         if(skipBy>0):#We've already captured this number, might as well skip.
             skipBy-=1
             colCount+=1
@@ -97,9 +99,12 @@ for row in grid:
                 topLeft = grid[rowCount-1][colCount-1]#back one, above one - check they aren't out of bounds
             if(colCount-1>=0):#back one - check it isn't out of bounds
                 midLeft = grid[rowCount][colCount-1]
+
+            #print(str(rowCount)+"/"+str(rowCount))
+
             if(colCount-1<=0 and rowCount+1<rowMax):#back one, below one - check they aren't out of bounds
-                print(str(rowCount)+"/"+str(rowMax))
                 botLeft = grid[rowCount+1][colCount-1]
+                print("botLeft: "+botLeft)
 
             if(topLeft in symbols or midLeft in symbols or botLeft in symbols):
                 symbolFound = True
@@ -120,19 +125,20 @@ for row in grid:
 
                     if above in symbols or below in symbols:
                         symbolFound = True
-                        print(grid[rowCount][colOffset]+" has a vertical symbol")
+                        #print(grid[rowCount][colOffset]+" has a vertical symbol")
 
                 if colOffset+1<colMax:#if there's any space right:
                     nextChar = grid[rowCount][colOffset+1]
                     
                     if nextChar in symbols:
                         symbolFound = True
-                        print(partNumber+" has a NEXT symbol")
+                        #print(partNumber+" has a NEXT symbol")
                         sliding = False
                         break
                     elif nextChar in numberChars:
                         colOffset+=1#move our selection to the right and keep adding to it.
                         partNumber=partNumber+nextChar #need to extend our string of numbers.
+                        skipBy+=1#this will act as our "skip" for the string of numbers
                     else:
                         sliding = False #if it's not a symbol or a number it's a dot - but we still haven't checked the verticals
                         if not symbolFound:#if we still haven't found a symbol from the back column or the verticals.
@@ -146,37 +152,14 @@ for row in grid:
 
                             if topRight in symbols or botRight in symbols:
                                 symbolFound = True
-                                print(partNumber+" has a forward symbol")
+                                #print(partNumber+" has a forward symbol")
         if symbolFound:
-            #print(partNumber+" is a partnumber")
+            print(partNumber+" is a partnumber")
             Total+=int(partNumber)
             symbolFound = False
+        elif(len(partNumber)>0):
+            print(partNumber+" is NOT a partnumber")
         colCount+=1
     rowCount+=1
 
 print(str(Total))
-
-
-
-
-
-
-
-
-
-
-
-
-
-#check each number as adjacent to a symbol
-
-#top left = -1col, -1row
-#top mid = 0 col, -1 row
-#top right = +1 col, -1 row
-#behind = -1 col, 0 row
-#infront = -1 col, 0 row
-#bot left = -1col, +1row
-#bot mid = 0 col, +1 row
-#bot right = +1 col, +1 row
-
-#second a number is found as adjacent - identify the entire string.
