@@ -26,7 +26,7 @@ lines = txtToLineArray(input)
 ###testlines
 #lines = ["two1nine","eightwothree","abcone2threexyz","xtwone3four","4nineeightseven2","zoneight234","7pqrstsixteen","five1oneightg"] #values are 29, 83, 13, 24, 42, 14, and 76 and 58 = 281+58=339 # round 1 is actually 69
 #lines = ["1twoneighthree3nine4fiveightwosevenine5","two1nine","eightwothree","abcone2threexyz","xtwone3four","4nineeightseven2","zoneight234","7pqrstsixteen","five1oneightg"]
-
+lines = ["oneightwoseveninefive12345678"]
 #print(lines)
 
 
@@ -79,7 +79,7 @@ for line in lines:
     bigArray.sort(key=lambda x: x.pos)#sorts each bigArray from lowest to highest.
     
     smush = str(bigArray[0].num)+str(bigArray[len(bigArray)-1].num)#same as 1-1: takes the lowest and highest numbers as strings, concats them (so 1,2 = 12)
-    print(smush)
+    #print(smush)
     total+=int(smush)
 
     for thing in bigArray:
