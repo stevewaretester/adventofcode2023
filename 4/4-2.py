@@ -27,12 +27,12 @@ lines = txtToLineArray(input)
 
 scratchStack = []
 for line in lines:
-    #print(line.rstrip('\n'))
-    cardNumSplit = line.rstrip('\n').split(":")
-    cardNum = cardNumSplit[0].split(" ")[1]
-    winScoreSplit=cardNumSplit[1].split("|")
-    winners = winScoreSplit[0].split()
-    havenumbers = winScoreSplit[1].split()
+    #print(line.rstrip('\n'))                       #Card 1:  41 48 83 86 17 | 83 86  6 31 17  9 48 53
+    cardNumSplit = line.rstrip('\n').split(":")     #Card 1>< 41 48 83 86 17 | 83 86  6 31 17  9 48 53
+    cardNum = cardNumSplit[0].split(" ")[1]         #Card|1
+    winScoreSplit=cardNumSplit[1].split("|")        #         41 48 83 86 17 ><83 86  6 31 17  9 48 53
+    winners = winScoreSplit[0].split()              #         41|48|83|86|17  
+    havenumbers = winScoreSplit[1].split()          #                          83|86| 6|31|17| 9|48|53
 
     multiScore = 0
     for have in havenumbers:
@@ -45,12 +45,11 @@ for line in lines:
 
 
 stackSize = 0
-listPos = 0#this keep strack of our index.
+listPos = 0#this keeps track of our index.
 #For each scratchcard
 for scratcher in scratchStack:
     #print("before Card "+scratcher.cardNo+", count: "+str(scratcher.cardCount)+", won: "+str(scratcher.won)+" Stack: "+str(stackSize))
     stackSize+=scratcher.cardCount
-#get the score
     for x in range(scratcher.won):
         if((listPos+x+1)<len(scratchStack)):
             scratchStack[listPos+x+1].cardCount+=scratcher.cardCount

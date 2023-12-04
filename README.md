@@ -3,6 +3,10 @@ my advent of code work - if interested feel free to join a leaderboard of mine t
 
 3278293-29c0c75c
 
+Difficulty ranking:
+(from easiest to hardest)
+4,2,1,3
+
 Retrospectives
 #https://adventofcode.com/2023/day/1
 Day 1 part 1 was fairly easy, but part 2 I went hard on, coming up with a solution that used objects and their relative positions. This was overkill and there's smarter solutions, but it worked and feels the most "true".
