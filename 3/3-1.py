@@ -17,16 +17,19 @@ lines = txtToLineArray(input)
 
 
 #example lines
+
+'''
 lines = ["467..114.."
          ,"...*......"
-         ,"..35..633."
-         ,"......#..."
+         ,"..35...633"
+         ,".......+.."
          ,"617*......"
          ,".....+.58."
          ,"..592....."
          ,"......755."
          ,"...$.*...."
          ,".664.598.."]
+'''
 
 numberChars= ["0","1","2","3","4","5","6","7","8","9"] #numbers as characters for easy comparison, could do this programmatically but I'm lazy.
 
@@ -51,9 +54,6 @@ print(symbols)
 
 print(grid)#Success, we have our 2d Array.
 
-
-
-
 '''3. Finding adjacent symbols and completing entire numbers.
 Two mechanisms to use here.
 
@@ -61,25 +61,21 @@ Two mechanisms to use here.
 2) Detecting adjacent numbers
 '''
 Total = 0#what we'll be printing at the end.
-rowCount = 0 #we'll likely need this at some point.
+rowCount = 0 #Lets us know what row we're on for easy targetting.
+rowMax = len(grid) #number of all rows
 #while rowLoop:
 for row in grid:
     print(row)
-    rowMax = len(grid)
-    print("rowMax: "+str(rowMax))
+    colMax = len(row)#number of all columns
 
 
 
     symbolFound = False #can use this to early-exit searching for symbols.
     skipBy = 0#we can use this to skip the next few columns - eg if we've found a number string
-    colCount = 0
+    colCount = 0 #what current column we're targetting.
     
     for col in row:
-        colMax = len(row[rowCount+1])
-        print(rowCount)
-        print("colMax: "+str(colMax))
-
-        if(skipBy>0):#We've already captured this number, might as well skip.
+        if(skipBy>0):#If we've already captured this number, might as well skip.
             skipBy-=1
             colCount+=1
             continue
@@ -100,11 +96,9 @@ for row in grid:
             if(colCount-1>=0):#back one - check it isn't out of bounds
                 midLeft = grid[rowCount][colCount-1]
 
-            #print(str(rowCount)+"/"+str(rowCount))
-
-            if(colCount-1<=0 and rowCount+1<rowMax):#back one, below one - check they aren't out of bounds
+            if(colCount-1>=0 and rowCount+1<rowMax):#back one, below one - check they aren't out of bounds
                 botLeft = grid[rowCount+1][colCount-1]
-                print("botLeft: "+botLeft)
+                #print("botLeft: "+botLeft)
 
             if(topLeft in symbols or midLeft in symbols or botLeft in symbols):
                 symbolFound = True
@@ -138,7 +132,7 @@ for row in grid:
                     elif nextChar in numberChars:
                         colOffset+=1#move our selection to the right and keep adding to it.
                         partNumber=partNumber+nextChar #need to extend our string of numbers.
-                        skipBy+=1#this will act as our "skip" for the string of numbers
+                        skipBy+=1#this will act as our "skip" for the string of numbers when we return to the main loop.
                     else:
                         sliding = False #if it's not a symbol or a number it's a dot - but we still haven't checked the verticals
                         if not symbolFound:#if we still haven't found a symbol from the back column or the verticals.
@@ -153,13 +147,17 @@ for row in grid:
                             if topRight in symbols or botRight in symbols:
                                 symbolFound = True
                                 #print(partNumber+" has a forward symbol")
+                else:
+                    sliding = False#if we're at the end of the row, return what we have.
+
         if symbolFound:
-            print(partNumber+" is a partnumber")
+            print(partNumber+" is a partnumber, row: "+str(rowCount)+", col"+str(colCount))
             Total+=int(partNumber)
             symbolFound = False
         elif(len(partNumber)>0):
-            print(partNumber+" is NOT a partnumber")
+            print(partNumber+" is NOT a partnumber, row: "+str(rowCount)+", start col"+str(colCount))
         colCount+=1
+        #print(colCount)
     rowCount+=1
 
 print(str(Total))
