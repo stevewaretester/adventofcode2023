@@ -28,9 +28,11 @@ Another breeze comparatively. The trick, for the second part, is simply realisin
 Relatively easy compared to Day 3.#
 
 #https://adventofcode.com/2023/day/5
+
 Oh fuck off - I feel like this is purposefully written to be as obnoxious and ambiguous as possible.
 I'll be skipping today until a later point.
 
 #https://adventofcode.com/2023/day/6
+
 Much easier, I realised that you could just go through every number and count as you do, but it's actually easier to loop forwards and then loop backwards - commiting only the max and minimum numbers.
 Because numberOfValidInputs = (Max-Min)+1 
