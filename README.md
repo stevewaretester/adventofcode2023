@@ -9,12 +9,7 @@ Retrospectives
 
 
 #https://adventofcode.com/2023/day/1
-<<<<<<< HEAD
 Day 1 part 1 was fairly easy, but part 2 I went hard on, coming up with a solution that used objects and their relative positions. This was overkill and there's smarter solutions, but it worked and feels the most "true" - i.e I could throw other variations without word-numbers and get an accurate result.
-=======
-
-Day 1 part 1 was fairly easy, but part 2 I went hard on, coming up with a solution that used objects and their relative positions. This was overkill and there's smarter solutions, but it worked and feels the most "true".
->>>>>>> d1a00a1fb552622645f7e961ecd3a31202b75daa
 
 #https://adventofcode.com/2023/day/2
 
@@ -30,7 +25,6 @@ There must be an easier solution because this was awful to navigate, I cheated t
 #https://adventofcode.com/2023/day/4
 
 Another breeze comparatively. The trick, for the second part, is simply realising that copies of scratchcards have the same score, so if you have 3 of one, and one only has a single winning value, there's 3 of two.
-<<<<<<< HEAD
 Relatively easy compared to Day 3.#
 
 #https://adventofcode.com/2023/day/5
@@ -40,6 +34,3 @@ I'll be skipping today until a later point.
 #https://adventofcode.com/2023/day/6
 Much easier, I realised that you could just go through every number and count as you do, but it's actually easier to loop forwards and then loop backwards - commiting only the max and minimum numbers.
 Because numberOfValidInputs = (Max-Min)+1 
-=======
-Relatively easy compared to Day 3.
->>>>>>> d1a00a1fb552622645f7e961ecd3a31202b75daa
