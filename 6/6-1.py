@@ -9,20 +9,18 @@ def txtToLineArray(txt):
     file.close()
     return lines
 
-
-class raceTimeDis:
-    def __init__(self, pos, time, distance):     
-        self.pos = pos
-        self.time = time
-        self.distance = distance
-
-
 input = os.path.join(sys.path[0],"input.txt")
 lines = txtToLineArray(input)
 
 ###Example lines
 
 #lines = txtToLineArray(os.path.join(sys.path[0],"example.txt"))
+
+class raceTimeDis:
+    def __init__(self, pos, time, distance):     
+        self.pos = pos
+        self.time = time
+        self.distance = distance
 
 
 

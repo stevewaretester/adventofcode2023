@@ -9,14 +9,6 @@ def txtToLineArray(txt):
     file.close()
     return lines
 
-
-class raceTimeDis:
-    def __init__(self, pos, time, distance):     
-        self.pos = pos
-        self.time = time
-        self.distance = distance
-
-
 input = os.path.join(sys.path[0],"input.txt")
 lines = txtToLineArray(input)
 
@@ -24,23 +16,28 @@ lines = txtToLineArray(input)
 
 #lines = txtToLineArray(os.path.join(sys.path[0],"example.txt"))
 
+class raceTimeDis:
+    def __init__(self, pos, time, distance):     
+        self.pos = pos
+        self.time = time
+        self.distance = distance
 
-
-times = lines[0].split()
-del times[0]
+times = lines[0].split()#time is always the first line
+del times[0] #we can delete the "times" title
 print(times)
-distances = lines[1].split()
+distances = lines[1].split() #Distance is always the 2nd line.
 del distances[0]
 print(distances)
 
 t=""
 d=""
-time=int(t.join(times))
-distance=int(d.join(distances))
+time=int(t.join(times)) #make one fat string of all time.
+distance=int(d.join(distances))#make one fat string of all distance.
 print(time)
 print(distance)
 #winningMovesList = []    
 winningMovesTotal = 1
+#don't need to loop anymore, let's flatten this loop down, can keep most of the vars though.
 #for i in range(0,len(distances)):
     #print("Tim: "+str(times[i])+" Dis: "+str(distances[i]))
     #distance=int(distances[i])
