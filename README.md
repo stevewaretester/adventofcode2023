@@ -3,7 +3,7 @@ my advent of code work - if interested feel free to join a leaderboard of mine t
 
 Difficulty ranking:
 (from easiest to hardest)
-6,4,2,1,3............5
+6,4,2,7,1,3,7............5
 
 Retrospectives
 
