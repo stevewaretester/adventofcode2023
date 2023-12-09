@@ -58,6 +58,13 @@ def handType(hand):
     if len(uniqueCards)==5:#High card, where all cards' labels are distinct: 23456
         return 0#"High card"
 
+def getOriginalHandIndex(bunchahands, inhand):
+    index = 0
+    for thing in bunchahands:
+        if thing.hand == inhand:
+            return index
+        index+=1
+
 ###The actual program
 maxRank=len(lines)
 
@@ -80,14 +87,24 @@ for aHand in allHands:#Let's get the types for each hand
 
 #print(presentTypes)
 allTypes=list(presentTypes)#convert the set into a list, .
-allTypes.reverse()#reverse the order - this will give us largest to smallest
+#allTypes.reverse()#reverse the order - this will give us largest to smallest
 #print(allTypes)
 
 allHands.sort(key=lambda x: x.type, reverse=True)
 
-#Now we need to rank the individual sets of hands
+#Now we need to rank the individual sets of hands#
+#previousRank = 0
+rankingUp = 0
 for typechunk in allTypes:
-    ofThisType = list(filter(lambda aHand: aHand.type == typechunk, allHands))
-    manyThisType = len(ofThisType)
+    ofThisType = list(filter(lambda aHand: aHand.type == typechunk, allHands))#get just the hands of this type so we can compare them.
+    manyThisType = len(ofThisType)#get the length of this type, we'll need this for ranking.
+
     print("there are "+str(manyThisType)+" of type "+str(typechunk))
     
+    #now go down the columns filtering by smallest size, then the next smallest, the the next...
+        
+
+    
+
+            
+    #print(getOriginalHandIndex(allHands, aHand.hand))
