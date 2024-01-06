@@ -16,7 +16,7 @@ lines = txtToLineArray(input)
 
 #lines = txtToLineArray(os.path.join(sys.path[0],"example.txt"))#2
 #lines = txtToLineArray(os.path.join(sys.path[0],"example1.txt"))#6
-#lines = txtToLineArray(os.path.join(sys.path[0],"example2.txt"))#6
+lines = txtToLineArray(os.path.join(sys.path[0],"example2.txt"))#6
 
 ###Classes
 class posLeftRight:
@@ -58,29 +58,56 @@ for astart in start:
 print(len(start))
 loop = True
 #next = start
-steps = 0
+hasAz = []
+steps = 1
+startLength = len(start)
+otherzCount = 0
 while loop:
     count=0
+    #this one is working out when all the things have zs
     for direction in instructions:
         zCount=0
 
         ##First approach, wait until they sync up.
         for thisOne in start:
+            print(steps)
             #print(thisOne.position)
-            if direction=="L":
-                start[findIndexByPos(start,thisOne.position)] = theMap[findIndexByPos(theMap,thisOne.left)]
-            if direction=="R":
-                start[findIndexByPos(start,thisOne.position)] = theMap[findIndexByPos(theMap,thisOne.right)]
-            if thisOne.position[2]=="Z":
+            index = findIndexByPos(start,thisOne.position)
+            #print(start[index].position)
+            
+            if start[index].position[2]=="Z":
                 zCount+=1
-                thisOne.stepsToZ = steps
+                #otherzCount+=1
+                start[index].stepsToZ = steps
+                #hasAz.append(start.pop(index))
+            
+            if zCount==startLength:#Scenario 1, they all z's up
+                print("all zs line up")
+                loop = False
+                break
+
+            if direction=="L":
+                start[index] = theMap[findIndexByPos(theMap,thisOne.left)]#replace current with left for next loop
+            if direction=="R":
+                start[index] = theMap[findIndexByPos(theMap,thisOne.right)]#replace current with right for next loop
+            print(start[index].position)
+            
+            
+            
+        
         count+=1
-        if zCount==len(start):
+        if otherzCount==startLength:#Scenario 2, we have a first z for all of the things.
+            print("found lowest numbers")
             loop = False
             break
-        steps+=1
-    if(steps%1000==0):
+
+    steps+=1
+
+    if(steps%1000000==0):
         print(steps)
 
 print(steps)
 #98454000 = too low
+
+#for zhaver in hasAz:
+    #print(zhaver.position+" found at "+str(zhaver.stepsToZ))

@@ -65,7 +65,7 @@ rowCount = 0 #Lets us know what row we're on for easy targetting.
 rowMax = len(grid) #number of all rows
 #while rowLoop:
 for row in grid:
-    print(row)
+    #print(row)
     colMax = len(row)#number of all columns
 
 
@@ -151,11 +151,11 @@ for row in grid:
                     sliding = False#if we're at the end of the row, return what we have.
 
         if symbolFound:
-            print(partNumber+" is a partnumber, row: "+str(rowCount)+", col"+str(colCount))
+            #print(partNumber+" is a partnumber, row: "+str(rowCount)+", col"+str(colCount))
             Total+=int(partNumber)
             symbolFound = False
-        elif(len(partNumber)>0):
-            print(partNumber+" is NOT a partnumber, row: "+str(rowCount)+", start col"+str(colCount))
+        #elif(len(partNumber)>0):
+        #    print(partNumber+" is NOT a partnumber, row: "+str(rowCount)+", start col"+str(colCount))
         colCount+=1
         #print(colCount)
     rowCount+=1
