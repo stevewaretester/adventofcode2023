@@ -12,9 +12,30 @@ def txtToLineArray(txt):
 input = os.path.join(sys.path[0],"input.txt")
 lines = txtToLineArray(input)
 ###Example lines
-#lines = txtToLineArray(os.path.join(sys.path[0],"example.txt"))
+lines = txtToLineArray(os.path.join(sys.path[0],"example.txt"))
 
 print(lines)
+
+###Funcs
+def inbetween(between,big,small):
+    if big > between and small < between: #if it's between the big and small
+        return True
+    else:
+        return False
+
+def valueReturn(between,first,second):
+    big = 0
+    small = 0
+    if first > second:
+        big = first
+        small = second
+    else:
+        big = second
+        small = first
+    if(inbetween(between,big,small)):
+        return abs((big+expansion)-small)
+    else:
+        return abs(big-small)
 
 ###Objects
 class galaxy:
@@ -23,6 +44,20 @@ class galaxy:
     self.xpos = xpos
     self.ypos = ypos
 
+def inbetween(between,first,second):
+    big = 0
+    small = 0
+    if(first > second):
+        big = first
+        small = second
+    else:
+        big = second
+        small = first
+    if big > between and small < between: #if it's between the big and small
+        return True
+    else:
+        return False
+        
 
 newLines = []
 
@@ -33,12 +68,22 @@ for line in lines:
     if not '#' in line:
         newLines.append('..........')#add a new blank line
 '''
+
+expansion = 10
+
+bigRows = []
+bigCols = []
+
 count = 1#find blank rows AND convert to numbers.
+
+rowCount = 0
 for line in lines:
     theLine = line.rstrip('\n')
     print(theLine)
     if not '#' in theLine:
-        newLines.append('.'*len(theLine))
+        #newLines.append('.'*len(theLine))
+        if not rowCount in bigRows:
+            bigRows.append(rowCount)
     else:
 
         for x in range(0,theLine.count('#')):
@@ -47,6 +92,7 @@ for line in lines:
             count+=1
             print(theLine)
     newLines.append(theLine)
+    rowCount+=1
 
 print("lines post Rows")
 for line in newLines:
@@ -65,12 +111,14 @@ while moreRight:#cycle the columns
         if down==rowCount:#we're at the bottom
             print("right: "+str(right))
             for i in range(0,len(newLines)):#insert the new cols
-                newLines[i] = newLines[i][:right] + '.' + newLines[i][right:]
+                #newLines[i] = newLines[i][:right] + '.' + newLines[i][right:]
+                if not right in bigCols:
+                    bigCols.append(right)
 
-            for line in newLines:
-                print(line)
+            #for line in newLines:
+            #    print(line)
 
-            right+=1#jump past the new column, we know it's all 1s already.
+            #right+=1#jump past the new column, we know it's all 1s already.
             moreDown = False
             #down = 0
             break
@@ -122,17 +170,33 @@ print("No. of Galaxies: "+str(len(galaxies)))
 runningTotal = 0
 allDone = []
 
+print("Rows")
+for row in bigRows:
+    print(row)
+
+print('Cols')
+for cols in bigCols:
+    print(cols)
+
 for g in galaxies:
     allDone.append(g)
     #print("new")
     #if len(gCopy)>0:
     for c in galaxies:
-        if c not in allDone: #9648398 #9648398
+        if c not in allDone:
             #print("galaxy: "+str(c.num)+" x: "+str(c.xpos)+" y:"+str(c.ypos))
+            '''
             xout = abs(g.xpos-c.xpos)
             yout = abs(g.ypos-c.ypos)
             runningTotal+=(xout+yout)
-
+            '''
+            '''
+            for bigrow in bigRows:
+                runningTotal+= valueReturn(bigrow,g.xpos,c.xpos)#too many
+            
+            for bigcol in bigCols:
+                runningTotal+= valueReturn(bigrow,g.ypos,c.ypos)
+            '''
 '''
 for g in galaxies:
     print("g: "+str(g.num)+" x: "+str(g.xpos)+" y:"+str(g.ypos))
